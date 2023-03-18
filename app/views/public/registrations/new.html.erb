@@ -1,0 +1,57 @@
+<h2>新規登録画面</h2>
+
+<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user' do |f| %>
+
+  <%= render "public/users/shared/error_messages", resource: resource %>
+  
+  <div class = "field">
+    <%= f.label :名前 %>
+    <%= f.label :姓 %>
+    <%= f.text_field :last_name %>
+    <%= f.label :名 %>
+    <%= f.text_field :first_name %>
+  </div>
+  
+  <div class = "field" >
+    <%= f.label :フリガナ %>
+    <%= f.label :セイ %>
+    <%= f.text_field :last_name_kana %>
+    <%= f.label :メイ %>
+    <%= f.text_field :first_name_kana %>
+  </div>
+  
+  <div class "field" >
+    <%= f.label :アカウント %>
+    <%= f.text_field :account %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メールアドレス %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワード %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワード確認 %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+  
+  <div class = "field">
+    <%= f.label :プロフィール写真 %>
+    <%= f.file_field :image %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit "新規登録" %>
+  </div>
+<% end %>
+
+<%= render "public/users/shared/links" %>

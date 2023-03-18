@@ -1,20 +1,31 @@
 Rails.application.routes.draw do
   
+
+  
   #管理者側
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
      sessions: "admin/sessions"
   }
   
   namespace :admin do
+    get 'homes/top'
+    get 'homes/about'
   end
   
+  
   #会員側
-  devise_for :users,skip: [:passwords], controllers: {
+  scope module: :public do
+ 
+    root to: 'homes#top'
+    get 'about' => 'homes#about', as: "about"
+
+    devise_for :users,skip: [:passwords], controllers: {
       sessions: 'public/sessions',
       registrations: 'public/registrations',
-  }
+    }
+   
+ 
   
-  scope module: :public do
   end
   
   
