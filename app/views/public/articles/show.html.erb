@@ -4,11 +4,11 @@
 <!--いいね機能-->
 <% if @article.liked_by?(current_user) %>
   <%= link_to article_likes_path(@article), method: :delete do %>
-    ♥<%= @article.likes.count %> suki
+    ♥<%= @article.likes.count %> 尊い
   <% end %>
 <% else %>
   <%= link_to article_likes_path(@article), method: :post do %>
-    ♡<%= @article.likes.count %> いいね
+    ♡<%= @article.likes.count %> 尊い
   <% end %>
 <% end %>
 

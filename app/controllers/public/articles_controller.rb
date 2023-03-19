@@ -27,6 +27,9 @@ class Public::ArticlesController < ApplicationController
 
   def confirm
   end
+  
+  def bookmarks
+  end
 
   private
   def article_params

@@ -1,0 +1,12 @@
+<div class = "container">
+  <div class = "row">
+    <!--お気に入り一覧-->
+    <% @likes.each do |like| %>
+    <!--タイトルクリックで詳細ページへ画面遷移-->
+     <%= link_to article_path(like.article.id) do %>
+       <%= like.article.title %>
+     <% end %>
+     <%= like.article.body %>
+    <% end %>
+  </div>
+</div>
