@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
 
-  
+
   #管理者側
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
      sessions: "admin/sessions"
@@ -18,6 +18,12 @@ Rails.application.routes.draw do
  
     root to: 'homes#top'
     get 'about' => 'homes#about', as: "about"
+    
+    # 記事投稿
+    resources :articles, only: [:new, :create, :show, :index, :destroy] do
+      resources :comments, only: [:create, :destroy, :index]
+    get 'articles/confirm'
+    end
 
     devise_for :users,skip: [:passwords], controllers: {
       sessions: 'public/sessions',

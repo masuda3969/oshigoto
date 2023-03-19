@@ -6,11 +6,35 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <!--ログインしている時のヘッダー-->
+      <% if user_signed_in? %>
+      <!--マイページ　カレンダー　布教リンク-->
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+　    <% elsif admin_signed_in? %>
+　    <!--会員一覧リンク-->
+　      <li>
+　        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+　      </li>
+　    <% else %>
+　      <li>
+　        <%= link_to "新規登録", new_user_registration_path %>
+　      </li>
+　      <li>
+　        <%= link_to "ログイン", new_user_session_path %>
+　      </li>
+　      <li>
+　        <%= link_to "About", about_path %>
+　      </li>
+　   <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>

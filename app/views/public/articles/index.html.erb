@@ -1,0 +1,39 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <div class = "card">
+        <!--記事一覧表示-->
+        <% @articles.each do |article| %>
+        
+        <div class = "card-title">
+          <%= article.title %>
+        </div>
+        <div class = "card-body">
+          <%= article.body %>
+        </div>
+        <div class = "card-img-bottom">
+          <%= image_tag article.favorite, size: "100x100" %>
+        </div>
+        <div class = "card-text">
+          <!--アカウント名表示させたい-->
+          
+          <%= article.user.account %>
+        </div>
+        
+        
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class = "row">
+    <%= link_to "戻る", new_article_path %>
+  </div>
+</div>
+
+
+
+
+
+
+
+

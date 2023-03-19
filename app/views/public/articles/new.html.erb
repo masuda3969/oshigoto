@@ -1,0 +1,17 @@
+<h1>新規投稿</h1>
+
+<%= form_with model: @article, url: '/articles', method: :post do |f| %>
+
+
+<%= f.label :タイトル %>
+<%= f.text_field :title %>
+
+<%= f.label :本文 %>
+<%= f.text_area :body %>
+
+<%= f.label :画像 %>
+<%= f.file_field :favorite, accept: "image/*" %>
+
+<%= f.submit '布教する', class: "btn btn-success" %>
+
+<% end %>

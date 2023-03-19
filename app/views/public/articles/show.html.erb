@@ -1,0 +1,27 @@
+<%= image_tag @article.favorite %>
+<%= @article.title %>
+<!--投稿者とログインユーザーが同じ場合削除リンク表示-->
+<% if @article.user_id == current_user.id %>
+  <%= link_to "削除", article_path(@article.id), method: :delete %>
+<% end %>
+
+
+<div>
+  <%= form_with model: [@article, @comment] do |f| %>
+    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "コメントする", class: "btn btn-success" %>
+  <% end %>
+</div>
+
+<div>
+  <% @article.comments.each do |comment| %>
+    <%= comment.user.account %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <%= comment.body %>
+    <!--コメント投稿ユーザーがログインユーザーと同じ場合削除リンク表示-->
+    <% if comment.user_id == current_user.id %>
+      <%= link_to "削除", article_comment_path(comment.article, comment), method: :delete %>
+    <% end %>
+  <% end %>
+
+</div>

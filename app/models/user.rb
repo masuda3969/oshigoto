@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-         #プロフィール画像
-         has_one_attached :image
+  #プロフィール画像
+  has_one_attached :image
+         
+  has_many :articles, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
 end
