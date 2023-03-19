@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     
     # 記事投稿
     resources :articles, only: [:new, :create, :show, :index, :destroy] do
+      resource :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy, :index]
     get 'articles/confirm'
     end
