@@ -32,6 +32,9 @@ Rails.application.routes.draw do
         
       resources :comments, only: [:create, :destroy, :index]
     get 'articles/confirm'
+    collection do
+      get 'search'
+    end
     end
     resources :likes, only: [:index]
     

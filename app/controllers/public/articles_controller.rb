@@ -39,6 +39,17 @@ class Public::ArticlesController < ApplicationController
   def confirm
   end
   
+  # 検索機能
+  def search
+    # 入力された検索ワードがタイトル、本文にあるかチェック
+    if params[:keyword].present?
+      @article = Article.where('body LIKE ?', "%#{params[:keyword]}%").where('title LIKE ?', "%#{params[:keyword]}%")
+      @keyword = params[:keyword]
+      # binding.pry
+    else
+      Article.none
+    end
+  end
   
 
   private
