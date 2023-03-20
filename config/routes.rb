@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     
 
     # 記事投稿
-    resources :articles, only: [:new, :create, :show, :index, :destroy] do
+    resources :articles do
       resource :likes, only: [:create, :destroy] 
         
       resources :comments, only: [:create, :destroy, :index]

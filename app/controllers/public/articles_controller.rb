@@ -8,12 +8,22 @@ class Public::ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     @article.save
-    redirect_to new_article_path
+    redirect_to articles_path
   end
 
   def show
     @article = Article.find(params[:id])
     @comment = Comment.new
+  end
+  
+  def edit 
+    @article = Article.find(params[:id])
+  end
+  
+  def update
+    @article = Article.find(params[:id])
+    @article.update(article_params)
+    redirect_to article_path(@article.id)
   end
 
   def index
@@ -21,15 +31,15 @@ class Public::ArticlesController < ApplicationController
   end
   
   def destroy
-    Article.find(params[:id]).destroy
-    redirect_to article_path
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to articles_path
   end
 
   def confirm
   end
   
-  def bookmarks
-  end
+  
 
   private
   def article_params

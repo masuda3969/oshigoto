@@ -1,12 +1,16 @@
 <%= image_tag @article.favorite %>
 <%= @article.title %>
+<%= @article.body %>
 
 <!--いいね機能-->
+<!--この記事にログインユーザーがいいねしているか判定-->
 <% if @article.liked_by?(current_user) %>
+  <!--ログインユーザーが既にいいねしていた場合、削除-->
   <%= link_to article_likes_path(@article), method: :delete do %>
     ♥<%= @article.likes.count %> 尊い
   <% end %>
 <% else %>
+<!--ログインユーザーがまだいいねしていなかった場合、登録-->
   <%= link_to article_likes_path(@article), method: :post do %>
     ♡<%= @article.likes.count %> 尊い
   <% end %>
@@ -14,10 +18,10 @@
 
 <!--投稿者とログインユーザーが同じ場合削除リンク表示-->
 <% if @article.user_id == current_user.id %>
-  <%= link_to "削除", article_path(@article.id), method: :delete %>
+  <%= link_to "削除", article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <% end %>
 
-
+<!--コメント投稿機能-->
 <div>
   <%= form_with model: [@article, @comment] do |f| %>
     <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
@@ -25,6 +29,7 @@
   <% end %>
 </div>
 
+<!--記事のコメント投稿一覧表示-->
 <div>
   <% @article.comments.each do |comment| %>
     <%= comment.user.account %>
@@ -32,7 +37,7 @@
     <%= comment.body %>
     <!--コメント投稿ユーザーがログインユーザーと同じ場合削除リンク表示-->
     <% if comment.user_id == current_user.id %>
-      <%= link_to "削除", article_comment_path(comment.article, comment), method: :delete %>
+      <%= link_to "削除", article_comment_path(comment.article, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %> %>
     <% end %>
   <% end %>
 
