@@ -2,6 +2,12 @@ Rails.application.routes.draw do
 
 
 
+  namespace :public do
+    get 'schedules/new'
+    get 'schedules/index'
+    get 'schedules/show'
+    get 'schedules/edit'
+  end
   #管理者側
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
      sessions: "admin/sessions"
@@ -28,13 +34,13 @@ Rails.application.routes.draw do
     get 'articles/confirm'
     end
     resources :likes, only: [:index]
+    
+    resources :schedules
 
     devise_for :users,skip: [:passwords], controllers: {
       sessions: 'public/sessions',
       registrations: 'public/registrations',
     }
-
-
 
   end
 

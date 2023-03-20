@@ -1,0 +1,12 @@
+
+<div class = "container">
+  <div class = "row">
+    <%= @schedule.start_time.strftime('%Y/%m/%d') %>
+    <%= @schedule.title %>
+    <%= @schedule.body %>
+  </div>
+  <div class = "row">
+    <%= link_to "編集する", edit_schedule_path(@schedule.id) %>
+    <%= link_to "削除する", schedule_path(@schedule.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  </div>
+</div>

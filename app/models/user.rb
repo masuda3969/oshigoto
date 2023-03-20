@@ -10,5 +10,6 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :like, dependent: :destroy
+  has_many :schedules, dependent: :destroy
 
 end
