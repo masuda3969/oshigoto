@@ -1,17 +1,5 @@
 Rails.application.routes.draw do
 
-
-
-  namespace :public do
-    get 'users/edit'
-    get 'users/show'
-  end
-  namespace :public do
-    get 'schedules/new'
-    get 'schedules/index'
-    get 'schedules/show'
-    get 'schedules/edit'
-  end
   #管理者側
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
      sessions: "admin/sessions"
@@ -35,7 +23,6 @@ Rails.application.routes.draw do
       resource :likes, only: [:create, :destroy] 
         
       resources :comments, only: [:create, :destroy, :index]
-    get 'articles/confirm'
     collection do
       get 'search'
     end
@@ -44,17 +31,18 @@ Rails.application.routes.draw do
     
     resources :schedules
     
+    devise_for :users,skip: [:passwords], controllers: {
+      sessions: 'public/sessions',
+      registrations: 'public/registrations',
+    }
+
     resources :users, only: [:index, :show] do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
 
-    devise_for :users,skip: [:passwords], controllers: {
-      sessions: 'public/sessions',
-      registrations: 'public/registrations',
-    }
-
+    
   end
 
 

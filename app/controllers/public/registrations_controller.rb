@@ -23,6 +23,10 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def update
   #   super
   # end
+  
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 
   # DELETE /resource
   # def destroy
@@ -38,7 +42,11 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+  #アカウント情報更新後の遷移先
+  def after_update_path_for(resource)
+    user_path(current_user.id)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

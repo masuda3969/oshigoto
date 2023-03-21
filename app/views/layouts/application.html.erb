@@ -14,7 +14,15 @@
     <header>
       <!--ログインしている時のヘッダー-->
       <% if user_signed_in? %>
-      <!--マイページ　カレンダー　布教リンク-->
+        <li>
+          <%= link_to "マイページ", user_path(current_user.id) %>
+        </li>
+        <li>
+          <%= link_to "カレンダー",schedules_path %>
+        </li>
+        <li>
+          <%= link_to "布教する",new_article_path %>
+        </li>
         <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
