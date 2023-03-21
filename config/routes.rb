@@ -39,6 +39,12 @@ Rails.application.routes.draw do
     resources :likes, only: [:index]
     
     resources :schedules
+    
+    resources :users, only: [:index, :show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
 
     devise_for :users,skip: [:passwords], controllers: {
       sessions: 'public/sessions',
