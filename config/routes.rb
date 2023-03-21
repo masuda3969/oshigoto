@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
 
   namespace :public do
+    get 'users/edit'
+    get 'users/show'
+  end
+  namespace :public do
     get 'schedules/new'
     get 'schedules/index'
     get 'schedules/show'
@@ -40,7 +44,7 @@ Rails.application.routes.draw do
     
     resources :schedules
     
-    resources :users, only: [:index, :show, :edit, :update] do
+    resources :users, only: [:index, :show] do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
