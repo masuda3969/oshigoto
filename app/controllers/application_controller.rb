@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # トップページとアバウトページのみログイン状態に関わらず閲覧可能
   # その他のページはログイン必須
-  # before_action :authenticate_user!, if: :use_auth?
+  before_action :authenticate_user!, except: [:top, :about]
 
   # deviseコントローラにストロングパラメータを追加
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -14,12 +14,8 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     root_path
   end
-  
-  # def use_auth?
-  #   if controller_name == 'homes' && action_name == "top"
-  #     true
-      
-  
+
+
 
 
   protected
