@@ -1,0 +1,11 @@
+<div class = "container">
+  <div class = "row">
+    <!-- card -->
+    <% @articles.each do |article| %>
+     <%= link_to admin_article_path(article.id) do %>
+       <%= article.title %>
+     <% end %>
+     <%= article.body %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class = "container">
+  <div class = "row">
+    <h4>検索結果 "<%= @keyword %>"</h4>
+    <% if @range == "ユーザー" %>
+    <ul>
+      <% @users.each do |user| %>
+      <li>
+        <%= link_to user_path(user.id) do %>
+         <%= image_tag user.image %>
+         <%= user.account %>
+        <% end %>
+      </li>
+      <% end %>
+    <% elsif @range == "布教" %>
+    <ul>
+      <% @articles.each do |article| %>
+      <li>
+        <%= link_to article_path(article.id) do %>
+         <%= article.title %>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+    <% end %>
+    </ul>
+  </div>
+</div>
+
+ 

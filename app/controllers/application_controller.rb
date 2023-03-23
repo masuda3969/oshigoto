@@ -1,7 +1,16 @@
 class ApplicationController < ActionController::Base
+  #管理者権限
+  before_action :authenticate_admin!, if: :admin_url
+  
+  def admin_url
+    request.fullpath.include?("/admin")
+  end
+
+
+  
   # トップページとアバウトページのみログイン状態に関わらず閲覧可能
   # その他のページはログイン必須
-  before_action :authenticate_user!, except: [:top, :about]
+  # before_action :authenticate_user!, except: [:top, :about]
 
   # deviseコントローラにストロングパラメータを追加
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -14,7 +23,8 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     root_path
   end
-
+  
+ 
 
 
 

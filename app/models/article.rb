@@ -10,4 +10,5 @@ class Article < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
   
+  
 end

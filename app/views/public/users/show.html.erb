@@ -27,6 +27,9 @@
     <% end %>
   </div>
   <div class = "row">
+    <%= render 'public/schedules/schedule', schedules: @schedules %>
+  </div>
+  <div class = "row">
     <% if @user.id == current_user.id %>
      <%= link_to "編集する", edit_user_registration_path(@user.id) %>
     <% end %>

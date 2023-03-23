@@ -1,0 +1,10 @@
+<div class = "container">
+  <div class = "row">
+    <%= @article.title %>
+    <%= @article.body %>
+    <%= image_tag @article.favorite %>
+  </div>
+  <div class = "row">
+    <%= link_to "削除する", admin_article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  </div>
+</div>

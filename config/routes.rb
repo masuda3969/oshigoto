@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   #管理者側
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
      sessions: "admin/sessions"
@@ -8,7 +9,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'homes/top'
     get 'homes/about'
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :articles, only: [:index, :show, :destroy]
   end
+
 
 
   #会員側
@@ -16,6 +20,8 @@ Rails.application.routes.draw do
 
     root to: 'homes#top'
     get 'about' => 'homes#about', as: "about"
+
+    get 'search' => "searches#search"
 
     # 記事投稿
     resources :articles do
@@ -44,7 +50,7 @@ Rails.application.routes.draw do
       patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
       #ユーザー一覧／ユーザー詳細画面
       resources :users, only: [:index, :show] do
-      
+
       #フォロー機能のルーティング
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'

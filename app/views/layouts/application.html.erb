@@ -34,7 +34,12 @@
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
 　    <% elsif admin_signed_in? %>
-　    <!--会員一覧リンク-->
+　      <li>
+　        <%= link_to "会員一覧", admin_users_path %>
+　      </li>
+　      <li>
+　        <%= link_to "布教一覧", admin_articles_path %>
+　      </li>
 　      <li>
 　        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
 　      </li>
@@ -49,6 +54,15 @@
 　        <%= link_to "About", about_path %>
 　      </li>
 　   <% end %>
+　   
+　   <!--検索機能-->
+　   <div class = "row">
+      <%= form_with url: search_path, method: :get do |f| %>
+       <%= f.text_field :keyword %>
+       <%= f.select :range, options_for_select([['ユーザー'], ['布教']]) %>
+       <%= f.submit '検索' %>
+      <% end %>
+      </div>
     </header>
     <%= yield %>
   </body>

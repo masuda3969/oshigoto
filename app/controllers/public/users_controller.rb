@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @articles = @user.articles.all
+    @schedules = current_user.schedules.all
   end
   
   def unsubscribe
@@ -15,5 +16,7 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
   end
+  
+  
 
 end
