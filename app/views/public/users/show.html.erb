@@ -5,6 +5,9 @@
 
     <%= link_to "♥　尊いリスト", likes_path %>
 
+    <%= link_to "フォロー一覧",user_followings_path(@user.id) %>
+    <%= link_to "フォロワー一覧", user_followers_path(@user.id) %>
+
     <!--フォロー機能（自分のページには表示されない）-->
     <% unless @user == current_user %>
       <% if current_user.following?(@user) %>
