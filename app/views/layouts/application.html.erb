@@ -12,6 +12,13 @@
 
   <body>
     <header>
+      <div class = "container">
+        <div class = "row">
+          <%= link_to root_path do %>
+           <%= image_tag "logo.jpeg", size: '50×50' %>
+          <% end %>
+        </div>
+      </div>
       <!--ログインしている時のヘッダー-->
       <% if user_signed_in? %>
         <li>

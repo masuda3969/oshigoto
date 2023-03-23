@@ -1,6 +1,30 @@
-<h4>推し・・・それは尊い存在</br>
-推しの笑顔のため、オタクたちは今日も</br>
-推しごとに励んでいる・・・
-</h4>
+<div class = "container">
+  <div class = "row">
+    <h4>推し・・・それは尊い存在</br>
+     推しの笑顔のため、オタクたちは今日も</br>
+     推しごとに励んでいる・・・
+    </h4>
+  </div>
 
-<!--新規投稿4件-->
+  <div class = "row">
+    <!--新規投稿4件-->
+    <div class = "card-deck">
+      <div class = "card bordered-primary">
+      <% @articles.each do |article| %>
+      <div class = "col" >
+        <div class = "card-title" >
+          <%= link_to article_path(article.id) do %>
+           <%= article.title %>
+          <% end %>
+        </div>
+        <div class = "card_body">
+         <%= article.body %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    </div>
+
+  </div>
+</div>
+
