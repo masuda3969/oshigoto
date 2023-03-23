@@ -16,33 +16,42 @@ Rails.application.routes.draw do
 
     root to: 'homes#top'
     get 'about' => 'homes#about', as: "about"
-    
 
     # 記事投稿
     resources :articles do
-      resource :likes, only: [:create, :destroy] 
-        
+      #お気に入り登録／削除
+      resource :likes, only: [:create, :destroy]
+      #記事のコメント機能
       resources :comments, only: [:create, :destroy, :index]
+    #記事検索機能のルーティング
     collection do
       get 'search'
     end
     end
+
+    #お気に入り一覧画面のルーティング
     resources :likes, only: [:index]
-    
+    #スケジュール機能
     resources :schedules
-    
+    #deviseを用いたユーザーのログイン／ログアウト
     devise_for :users,skip: [:passwords], controllers: {
       sessions: 'public/sessions',
       registrations: 'public/registrations',
     }
-
-    resources :users, only: [:index, :show] do
+    # 退会確認画面
+      get '/users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+      # 論理削除用のルーティング
+      patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+      #ユーザー一覧／ユーザー詳細画面
+      resources :users, only: [:index, :show] do
+      
+      #フォロー機能のルーティング
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
 
-    
+
   end
 
 

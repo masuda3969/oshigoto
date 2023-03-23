@@ -1,0 +1,13 @@
+<div class = "container">
+  <div class = "row">
+    <h3>本当に退会しますか・・・？</h3>
+  </div>
+  <div class = "row">
+    <p>退会するとサイトの閲覧が出来なくなります</br>
+    また、推しの布教をしてきた投稿も消されてしまいます。</p>
+  </div>
+  <div class = "row">
+    <%= link_to "退会する",withdrawal_path(current_user.id), method: :patch , data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger" %>
+    <%= link_to "退会しない", user_path(current_user.id) %>
+  </div>
+</div>

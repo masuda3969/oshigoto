@@ -1,28 +1,30 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2><%= current_user.account%>さんの会員情報編集</h2>
 
 <%= form_with model: @user, url: user_registration_path do |f| %>
-  
+
   <%= f.label :名前 %>
       <%= f.label :姓 %>
       <%= f.text_field :last_name %>
       <%= f.label :名 %>
       <%= f.text_field :first_name %>
-      
+
       <%= f.label :フリガナ %>
       <%= f.label :セイ %>
       <%= f.text_field :last_name_kana %>
       <%= f.label :メイ %>
       <%= f.text_field :first_name_kana %>
-      
+
       <%= f.label :メールアドレス %>
       <%= f.text_field :email %>
-      
+
       <%= f.label :アカウント名 %>
       <%= f.text_field :account %>
-  
-      
+
+
       <%= f.submit'更新する' %>
     <% end %>
+
+    <%= link_to "退会する",unsubscribe_path %>
 
 
 <%= link_to "Back", :back %>
