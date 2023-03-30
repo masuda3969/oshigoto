@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @articles = @user.articles.order(created_at: :desc).limit(4)
+    @articles = @user.articles.page(params[:page]).per(4)
     @schedules = current_user.schedules.all
   end
 
