@@ -10,6 +10,7 @@ class User < ApplicationRecord
          validates :first_name_kana, presence: true
          validates :account, presence: true
          validates :image, presence: { message: 'を選択してください' }
+         validates :account, uniqueness: true
          
   #プロフィール画像
   has_one_attached :image

@@ -2,7 +2,7 @@
   <div class = "row justify-content-start font-pupupu">
     <h4><%= @user.account %>さんの推しごとページ</h4>
   </div>
-    
+
   <div class = "row justify-content-end" >
     <%= image_tag @user.image,size: '100x100', class: "rounded-circle" %>
   </div>
@@ -31,7 +31,7 @@
       <%= link_to "布教する", new_article_path %>
     <% end %>
   </div>
-  
+
   <div class = "row justify-content-end mb-3 font-pupupu">
     <% if @user.id == current_user.id %>
      <%= link_to "編集する", edit_user_registration_path(@user.id) %>
@@ -43,7 +43,7 @@
      <div class = "card bordered-primary">
         <div class = "card-title" >
           <%= link_to article_path(article.id) do %>
-           <p class = "h-10"><%= article.title %></p>
+           <p><%= article.title %></p>
           <% end %>
         </div>
         <div class = "card-body">
@@ -64,7 +64,7 @@
       <%= render 'public/schedules/schedule', schedules: @schedules %>
     </div>
 
-    
+
 
   </div>
 
