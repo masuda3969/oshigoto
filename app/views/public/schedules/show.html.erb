@@ -1,12 +1,35 @@
-
 <div class = "container">
   <div class = "row">
-    <%= @schedule.start_time.strftime('%Y/%m/%d') %>
-    <%= @schedule.title %>
-    <%= @schedule.body %>
+    <div class = "col-6">
+      <%= render"schedule", schedules: @schedules %>
+    </div>
+    <div class = "col-6 align-self-center">
+      
+      <div class = "card mb-3">
+        <div class "card-header">
+          <i class="fas fa-clock"></i><%= @schedule.start_time.strftime('%Y/%m/%d/%H:%M') %><i class="fas fa-arrow-right"></i>
+          <%= @schedule.end_time.strftime('%Y/%m/%d/%H:%M') %></br>
+        </div>
+        <div class = "card-body bg-light">
+          <div class = "card-title font-weight-bold">
+            <%= @schedule.title %>
+          </div>
+          <div class = "card-text">
+            <%= @schedule.body %>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class = "row justify-content-end">
+        <%= link_to "編集する", edit_schedule_path(@schedule.id), class: "btn btn-success" %>
+        <%= link_to "削除する", schedules_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger ml-3" %>
+      </div>
+      
+      
+      
+    </div>
+    
   </div>
-  <div class = "row">
-    <%= link_to "編集する", edit_schedule_path(@schedule.id) %>
-    <%= link_to "削除する", schedules_path, method: :delete, "data-confirm" => "本当に削除しますか？" %>
-  </div>
+  
 </div>

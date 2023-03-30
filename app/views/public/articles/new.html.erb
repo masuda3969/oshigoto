@@ -1,17 +1,62 @@
-<h1>新規投稿</h1>
+<div class = "container">
+  <div class = "row">
+    <h4>布教する</h4>
+  </div>
+  
+  <div class ="row">
+    <% if @article.errors.any? %>
+     <ul>
+       <% @article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+       <% end %>
+     </ul>
+    <% end %>
+  </div>
 
-<%= form_with model: @article, url: '/articles', method: :post do |f| %>
+  
+ <div class = "row">
+   <%= form_with model: @article, url: '/articles', method: :post do |f| %>
+   
+   <div class = "form-group row">
+     <div class = "col-3">
+       <%= f.label :タイトル %>
+     </div>
+     <div class = "col-9">
+       <%= f.text_field :title, :size => "30*30" %>
+     </div>
+     
+   </div>
+   
+   <div class = "form-group row">
+     <div class = "col-3 twxt-wrap">
+       <%= f.label :本文 %>
+     </div>
+     <div class = "col-9">
+       <%= f.text_area :body, rows:"10", cols:"40" %>
+     </div>
+   </div>
+   
+   <div class = "form-group row mb-4">
+     <div class = "col-3">
+       <%= f.label :画像 %>
+     </div>
+     <div class = "col-9">
+       <%= f.file_field :favorite, accept: "image/*" %>
+     </div>
+   </div>
+    
+    <div class = "row offset-7 mb-4">
+      <%= f.submit '布教する', class: "btn btn-success" %>
+    </div>
+    
+    <% end %>
+
+  </div>
+  
+</div>
 
 
-<%= f.label :タイトル %>
-<%= f.text_field :title %>
 
-<%= f.label :本文 %>
-<%= f.text_area :body %>
 
-<%= f.label :画像 %>
-<%= f.file_field :favorite, accept: "image/*" %>
 
-<%= f.submit '布教する', class: "btn btn-success" %>
 
-<% end %>

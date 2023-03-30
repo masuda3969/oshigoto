@@ -1,55 +1,77 @@
-<div class = "cntainer">
-  <div class = "row">
+<div class = "container">
+  
+  <div class = "row justify-content-end">
     <%= link_to user_path(@article.user.id) do %>
-     <%= image_tag @article.user.image, size: "200×200" %>
+     <%= @article.user.account %>
+     <%= image_tag @article.user.image, size: "100x100", class: "rounded-circle" %>
     <% end %>
   </div>
+  
   <div class = "row">
-    <%= image_tag @article.favorite, size: "100×100" %>
-    <%= @article.title %>
-    <%= @article.body %>
+    
+     <div class = "col-6 mb-4">
+       <%= image_tag @article.favorite, size: "300x200", class: "mb-3" %>
+       <p class = "font-weight-bold">
+         <%= @article.title %>
+       </p>
+       <p>
+        <%= @article.body %>
+       </p>
+       
+       <p class = "my-3">
+        <!--いいね機能-->
+        <!--この記事にログインユーザーがいいねしているか判定-->
+        <% if @article.liked_by?(current_user) %>
+        <!--ログインユーザーが既にいいねしていた場合、削除-->
+          <%= link_to article_likes_path(@article), method: :delete do %>
+           <i class="fas fa-heart" style="color: #ff0000;"></i><%= @article.likes.count %> 尊い
+          <% end %>
+        <% else %> 
+        <!--ログインユーザーがまだいいねしていなかった場合、登録-->
+          <%= link_to article_likes_path(@article), method: :post do %>
+           <i class="far fa-heart" style="color: #ff0000;"></i><%= @article.likes.count %> 尊い
+          <% end %>
+        <% end %>
+       
+        <!--投稿者とログインユーザーが同じ場合削除リンク表示-->
+        <% if @article.user_id == current_user.id %>
+          <%= link_to "削除", article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <% end %></br>
+       </p>
+       <!--コメント投稿機能-->
+       <%= form_with model: [@article, @comment] do |f| %>
+         <%= f.text_area :body, rows: '5', cols: "30", placeholder: "コメントをここに" %></br>
+         <%= f.submit "コメントする", class: "btn btn-success my-4" %>
+       <% end %>
+     </div>
+     
+     <div class ="col-6">
+       <caption><i class="far fa-comment"></i>コメント</caption>
+       <!--記事のコメント投稿一覧表示-->
+       <table class ="table table-sm">
+         <% @article.comments.each do |comment| %>
+         <tr>
+           <td>
+             <%= link_to user_path(comment.user.id) do %>
+              <%= comment.user.account %>
+             <% end %> 
+           </td>
+           <td><%= comment.body %></td>
+           <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+           <td>
+             <!--コメント投稿ユーザーがログインユーザーと同じ場合削除リンク表示-->
+             <% if comment.user_id == current_user.id %>
+               <%= link_to "削除", article_comment_path(comment.article, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+             <% end %>  
+           </td>
+         </tr>
+         <% end %>
+       </table>
+       
+        
+
+       
+     </div>
   </div>
-</div>>
-
-<!--いいね機能-->
-<!--この記事にログインユーザーがいいねしているか判定-->
-<% if @article.liked_by?(current_user) %>
-  <!--ログインユーザーが既にいいねしていた場合、削除-->
-  <%= link_to article_likes_path(@article), method: :delete do %>
-    ♥<%= @article.likes.count %> 尊い
-  <% end %>
-<% else %>
-<!--ログインユーザーがまだいいねしていなかった場合、登録-->
-  <%= link_to article_likes_path(@article), method: :post do %>
-    ♡<%= @article.likes.count %> 尊い
-  <% end %>
-<% end %>
-
-<!--投稿者とログインユーザーが同じ場合削除リンク表示-->
-<% if @article.user_id == current_user.id %>
-  <%= link_to "削除", article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% end %>
-
-<!--コメント投稿機能-->
-<div>
-  <%= form_with model: [@article, @comment] do |f| %>
-    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "コメントする", class: "btn btn-success" %>
-  <% end %>
-</div>
-
-<!--記事のコメント投稿一覧表示-->
-<div>
-  <% @article.comments.each do |comment| %>
-    <%= link_to user_path(comment.user.id) do %>
-     <%= comment.user.account %>
-    <% end %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <%= comment.body %>
-    <!--コメント投稿ユーザーがログインユーザーと同じ場合削除リンク表示-->
-    <% if comment.user_id == current_user.id %>
-      <%= link_to "削除", article_comment_path(comment.article, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-    <% end %>
-  <% end %>
 
 </div>

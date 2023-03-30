@@ -1,8 +1,10 @@
 class Public::SchedulesController < ApplicationController
-  def new
-    @schedule = Schedule.new
-  end
 
+  def index
+    @schedule = Schedule.new
+    @schedules = current_user.schedules.all
+  end
+  
   def create
     @schedule = Schedule.new(schedule_params)
     @schedule.user_id = current_user.id
@@ -10,12 +12,9 @@ class Public::SchedulesController < ApplicationController
     redirect_to schedules_path
   end
 
-  def index
-    @schedules = current_user.schedules.all
-  end
-
   def show
     @schedule = Schedule.find(params[:id])
+    @schedules = current_user.schedules.all
   end
 
   def edit
@@ -36,7 +35,7 @@ class Public::SchedulesController < ApplicationController
 
   private
   def schedule_params
-    params.require(:schedule).permit(:title, :body, :start_time, :user_id)
+    params.require(:schedule).permit(:title, :body, :start_time, :user_id, :end_time)
   end
 
 end

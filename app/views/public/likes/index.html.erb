@@ -1,12 +1,20 @@
 <div class = "container">
   <div class = "row">
-    <!--お気に入り一覧-->
-    <% @likes.each do |like| %>
-    <!--タイトルクリックで詳細ページへ画面遷移-->
-     <%= link_to article_path(like.article.id) do %>
-       <%= like.article.title %>
-     <% end %>
-     <%= like.article.body %>
-    <% end %>
+    <ul>
+      <!--お気に入り一覧-->
+      <% @likes.each do |like| %>
+       <li><!--タイトルクリックで詳細ページへ画面遷移-->
+         <%= link_to article_path(like.article.id) do %>
+           <%= like.article.title %>
+         <% end %>
+         <p class = "text-truncate w-25">
+           <%= like.article.body %>
+         </p>
+         
+       </li>
+       <% end %>
+    </ul>
+    
+
   </div>
 </div>

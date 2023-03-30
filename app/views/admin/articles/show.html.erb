@@ -1,10 +1,17 @@
 <div class = "container">
   <div class = "row">
-    <%= @article.title %>
-    <%= @article.body %>
-    <%= image_tag @article.favorite %>
+    <div class = "col-6">
+      <%= image_tag @article.favorite, size: "300x200", class: "mb-3" %>
+      <p class = "font-weight-bold">
+        <%= @article.title %>
+      </p>
+      <p>
+        <%= @article.body %>
+      </p>
+    </div>
+    
   </div>
   <div class = "row">
-    <%= link_to "削除する", admin_article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <%= link_to "削除する", admin_article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger mb-4" %>
   </div>
 </div>

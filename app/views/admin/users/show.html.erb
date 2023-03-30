@@ -1,6 +1,6 @@
 <div class = "container">
   <div class = "row">
-    <h4><%= @user.last_name %><%= @user.first_name %>さんの会員情報</h4>
+    <h6><%= @user.last_name %><%= @user.first_name %>さんの会員情報</h6>
   </div>
   
   <div class = "row">
@@ -32,7 +32,16 @@
         </tr>
         <tr>
           <th>会員ステータス</th>
-          <td><%= @user.is_deleted %></td>
+          <td><% if @user.is_deleted == false %>
+              <div class = "text-success font-weight-bold">
+                <%= "有効" %>
+              </div>
+            <% else %>
+              <div class = "text-secondary font-weight-bold">
+                <%= "退会" %>
+              </div>
+            <% end %>
+          </td>
         </tr>
       </tbody>
     </table>

@@ -1,30 +1,61 @@
-<h2><%= current_user.account%>さんの会員情報編集</h2>
+<div class = "container">
+  <div class = "row mb-3">
+    <h5><%= current_user.account%>さんの会員情報編集</h5>
+  </div>
+  <div class = "row justify-content-center mb-3">
+    <%= link_to "退会する",unsubscribe_path, class: "btn btn-danger btn-sm" %>
+  </div>
 
-<%= form_with model: @user, url: user_registration_path do |f| %>
+    <%= form_with model: @user, url: user_registration_path do |f| %>
 
-  <%= f.label :名前 %>
-      <%= f.label :姓 %>
-      <%= f.text_field :last_name %>
-      <%= f.label :名 %>
-      <%= f.text_field :first_name %>
+    <div class = "form-group row">
+      <div class = "col-2">
+        <%= f.label :名前 %>
+      </div>
+      <div class = "col-10">
+        <%= f.text_field :last_name, :placeholder => "姓" %>
+        <%= f.text_field :first_name, :placeholder => "名" %>
+      </div>
+    </div>
 
-      <%= f.label :フリガナ %>
-      <%= f.label :セイ %>
-      <%= f.text_field :last_name_kana %>
-      <%= f.label :メイ %>
-      <%= f.text_field :first_name_kana %>
+    <div class = "form-group row">
+      <div class = "col-2">
+        <%= f.label :フリガナ %>
+      </div>
+      <div class = "col-10">
+        <%= f.text_field :last_name_kana, :placeholder => "セイ" %>
+        <%= f.text_field :first_name_kana, :placeholder => "メイ" %>
+      </div>
+    </div>
 
-      <%= f.label :メールアドレス %>
-      <%= f.text_field :email %>
+    <div class = "form-group row">
+      <div class = "col-2">
+        <%= f.label :メールアドレス %>
+      </div>
+      <div class = "col-10">
+        <%= f.text_field :email, :placeholder => "メールアドレス"  %>
+      </div>
+    </div>
 
-      <%= f.label :アカウント名 %>
-      <%= f.text_field :account %>
+    <div class = "form-group row">
+      <div class = "col-2">
+        <%= f.label :アカウント名 %>
+      </div>
+      <div class = "col-10">
+        <%= f.text_field :account, :placeholder => "アカウント名" %>
+      </div>
+    </div>
 
+    <div class = "row justufy-content-center offset-3 mb-3">
+      <%= f.submit'更新する', class: "btn btn-success" %>
+    </div>
 
-      <%= f.submit'更新する' %>
     <% end %>
 
-    <%= link_to "退会する",unsubscribe_path %>
+  <div class = "row justify-content-start mb-5">
+    <%= link_to "Back", :back,class: "btn btn-primary btn-sm" %>
 
 
-<%= link_to "Back", :back %>
+  </div>
+
+</div>

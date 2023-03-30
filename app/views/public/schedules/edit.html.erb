@@ -1,14 +1,39 @@
-
 <div class = "container">
   <div class = "row">
     <%= form_with model: @schedule do |f| %>
-    <%= f.label :タイトル %>
-    <%= f.text_field :title %>
-    <%= f.label :スケジュール %>
-    <%= f.text_area :body %>
-    <%= f.label :日時 %>
-    <%= f.datetime_select :start_time %>
-    <%= f.submit'変更を保存する' %>
+
+    <div class = "form-group text-nowrap">
+      <div class = "col-3">
+        <i class="fas fa-pen"></i><%= f.label :タイトル %>
+      </div>
+      <div class = "col-9">
+        <%= f.text_field :title %>
+      </div>
+    </div>
+
+    <div class = "form-group text-nowrap">
+      <div class = "col-3">
+        <i class="far fa-calendar"></i><%= f.label :メモ %>
+      </div>
+      <div class = "col-9">
+        <%= f.text_area :body, size: "30x5" %>
+      </div>
+    </div>
+
+    <div class = "form-group text-nowrap">
+      <div class = "col-3">
+        <i class="far fa-clock"></i><%= f.label :日時 %>
+      </div>
+      <div class = "col-9">
+        <%= f.datetime_select :start_time %></br>
+        <%= f.datetime_select :end_time %>
+      </div>
+    </div>
+
+    <div class = "row offset-1 mb-5">
+      <%= f.submit'変更を保存する', class: "btn btn-success" %>
+    </div>
+
     <% end %>
   </div>
 </div>

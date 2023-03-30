@@ -6,11 +6,17 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+
 module Oshigoto
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.time_zone = "Tokyo"
+
+    config.beginning_of_week = :sunday
+    
+    config.i18n.default_locale = :ja
 
     # Configuration for the application, engines, and railties goes here.
     #

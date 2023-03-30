@@ -1,29 +1,45 @@
 <div class = "container">
-  <div class = "row">
-    <h4>検索結果 "<%= @keyword %>"</h4>
-    <% if @range == "ユーザー" %>
-    <ul>
-      <% @users.each do |user| %>
-      <li>
-        <%= link_to user_path(user.id) do %>
-         <%= image_tag user.image %>
-         <%= user.account %>
-        <% end %>
-      </li>
-      <% end %>
-    <% elsif @range == "布教" %>
-    <ul>
-      <% @articles.each do |article| %>
-      <li>
-        <%= link_to article_path(article.id) do %>
-         <%= article.title %>
-        <% end %>
-      </li>
-      <% end %>
-    </ul>
-    <% end %>
-    </ul>
+  <div class = "row justify-content-center mb-5">
+
+    <div class = "card-deck">
+      <div class = "card">
+        <div class = "card-header">
+          検索結果 "<%= @keyword %>"
+        </div>
+        <div class = "card-body">
+          <ul class = "list-group list-group-flush list-unstyled">
+            <!--ユーザーモデルから検索する場合-->
+            <% if @range == "ユーザー" %>
+              <% @users.each do |user| %>
+                <li class = "list-item-group">
+                  <%= link_to user_path(user.id) do %>
+                    <%= image_tag user.image, size: "100x100", class: "rounded-circle" %>
+                    <%= user.account %>
+                  <% end %>
+                </li>
+              <% end %>
+
+            <!--投稿記事から検索する場合-->
+            <% elsif @range == "布教" %>
+              <% @articles.each do |article| %>
+                <li class = "list-item-group">
+                 <%= link_to article_path(article.id) do %>
+                   <%= article.title %>
+                 <% end %>
+                </li>
+              <% end %>
+             
+          
+            <% end %>
+          </ul>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 </div>
 
- 

@@ -4,6 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+         validates :last_name, presence: true
+         validates :first_name, presence: true
+         validates :last_name_kana, presence: true
+         validates :first_name_kana, presence: true
+         validates :account, presence: true
+         validates :image, presence: { message: 'を選択してください' }
+         
   #プロフィール画像
   has_one_attached :image
          
@@ -37,7 +44,6 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (is_deleted == false)
   end
-  
-  
+
 
 end

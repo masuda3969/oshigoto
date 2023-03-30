@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  
+  # トップページとアバウトページのみログイン状態に関わらず閲覧可能
+  # その他のページはログイン必須
+  before_action :authenticate_user!, except: [:top, :about], unless: :admin_signed_in?
+  
   #管理者権限
   before_action :authenticate_admin!, if: :admin_url
   
@@ -7,10 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-  
-  # トップページとアバウトページのみログイン状態に関わらず閲覧可能
-  # その他のページはログイン必須
-  # before_action :authenticate_user!, except: [:top, :about]
 
   # deviseコントローラにストロングパラメータを追加
   before_action :configure_permitted_parameters, if: :devise_controller?

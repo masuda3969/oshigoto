@@ -1,6 +1,46 @@
 <div class = "container">
   <div class = "row">
-    <%= render"schedule", schedules: @schedules %>
+    <div class = "col-6">
+      <%= render"schedule", schedules: @schedules %>
+    </div>
+
+    <div class = "col-6 align-self-center">
+      <%= form_with model: @schedule, url: '/schedules', method: :post do |f| %>
+
+      <div class = "form-group row">
+        <div class = "col-3">
+          <i class="fas fa-pen"></i><%= f.label :タイトル %>
+        </div>
+        <div class = "col-9">
+          <%= f.text_field :title %>
+        </div>
+      </div>
+
+      <div class = "form-group row">
+        <div class = "col-3">
+            <i class="far fa-calendar"></i><%= f.label :メモ%>
+        </div>
+        <div class = "col-9">
+          <%= f.text_area :body %>
+        </div>
+      </div>
+
+      <div class = "form-group row">
+        <div class = "col-3">
+          <i class="far fa-clock"></i><%= f.label :日時 %>
+        </div>
+        <div class = "col-9">
+          <%= f.datetime_select :start_time %></br>
+          <%= f.datetime_select :end_time %>
+        </div>
+      </div>
+
+      <div class = "row offset-3">
+        <%= f.submit "登録", class: "btn btn-success"  %>
+      </div>
+
+      <% end %>
+    </div>
   </div>
 </div>
 
