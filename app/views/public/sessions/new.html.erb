@@ -1,25 +1,25 @@
 <div class = "container">
-  
-  <div class = "row justify-content-center">
-    <h6>ログイン</h6>
+
+  <div class = "row justify-content-center font-pupupu">
+    <h2><span class = "pink">ロ</span><span class = "sky-blue">グ</span><span class = "purple">イ</span><span class = "green">ン</span></h2>
   </div>
-  
-  <div class = "row justify-content-center mb-5">
-    <div class = "card bg-light">
+
+  <div class = "row justify-content-center mb-5 font-pupupu">
+    <div class = "card bg-yellow">
       <%= form_with model: @user, url: user_session_path do |f| %>
        <div class = "card-body">
          <div class="form-group">
            <%= f.label :メールアドレス %><br />
-           <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "Email" %>
+           <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "メールアドレス" %>
          </div>
-         
+
          <div class="form-group">
            <%= f.label :パスワード %><br />
-           <%= f.password_field :password, autocomplete: "current-password", :placeholder => "Password" %>
+           <%= f.password_field :password, autocomplete: "current-password", :placeholder => "パスワード" %>
          </div>
-         
+
          <div class="actions offset-3">
-           <%= f.submit "ログイン",class: "btn btn-primary" %>
+           <%= f.submit "ログイン",class: "btn btn-green" %>
          </div>
       <% end %>
        </div>
@@ -28,11 +28,11 @@
 </div>
 
 
-  
 
-  
 
- 
-  
+
+
+
+
 
 

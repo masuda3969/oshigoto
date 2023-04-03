@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     #お気に入り一覧画面のルーティング
     resources :likes, only: [:index]
     #スケジュール機能
-    resources :schedules
+    resources :schedules, only: [:edit, :index, :show, :create,]
     #deviseを用いたユーザーのログイン／ログアウト
     devise_for :users,skip: [:passwords], controllers: {
       sessions: 'public/sessions',

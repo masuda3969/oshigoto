@@ -2,3 +2,60 @@
 .font-pupupu{
   font-family: 'pupupu';
 }
+
+.pink{
+  color: #f7c8dc;
+}
+ 
+.sky-blue{
+  color: #7dcef4;
+}
+
+.purple{
+  color: #d3aaf0;
+}
+
+.green{
+    color: #AADDAA;
+}
+
+.yellow{
+    color: yellow;
+}
+
+.orange{
+    color: orange;
+}
+
+.red{
+  color:red;
+}
+
+.bigtext{
+  font-size: 50px;
+}
+
+.bg-yellow{
+  background-color: #ffffe0;
+}
+
+.btn-green{
+  background: #e0fff0;
+  color: #f7c8dc;
+}
+
+.random:nth-child(1){
+  background-color: #f7c8dc;
+}
+
+.random:nth-child(2){
+  background-color: #7dcef4;
+}
+
+.random:nth-child(3){
+  background-color: #d3aaf0;
+}
+
+.random:nth-child(4){
+  background-color: #AADDAA;
+}

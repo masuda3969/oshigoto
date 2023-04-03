@@ -3,20 +3,21 @@
     <%= image_tag "toutoi.jpg", size: '400x200' %>
   </div>
   <div class = "row justify-content-center mb-5 font-pupupu">
-    <h4>推し・・・それは尊い存在</br>
-     推しの笑顔のため、オタクたちは今日も</br>
-     推しごとに勤しんでいる・・・
+    <h4><span class = "pink">推し</span>・・・それは<span class = "sky-blue">尊い</span>存在</br>
+     <span class = "pink">推し</span>の<span class = "orange">笑顔</span>のため、オタクたちは今日も</br>
+     <span class = "pink">推し</span>ごとに勤しんでいる・・・
     </h4>
   </div>
-  <div class = "row justify-content-start mb-3">
+  <div class = "row justify-content-start mb-5">
     <%= image_tag "oshi.jpg", size: '400x200' %>
   </div>
 
   <div class = "row justify-content-center mb-5">
     <!--新規投稿4件-->
     <div class = "card-deck">
+
       <% @articles.each do |article| %>
-       <div class = "card bordered-primary">
+       <div class = "card bordered-primary random">
          <div class = "card-body">
            <div class = "card-title" >
             <%= link_to article_path(article.id) do %>

@@ -14,52 +14,51 @@
     <header class = "border-bottom mb-5">
       <div class = "container">
         <nav class = "navbar">
-          <div class = "row">
-            <div class = "navbar-brand">
-               <%= link_to root_path do %>
-                 <%= image_tag "oshigoto.JPEG", size: '400x200' %>
-               <% end %>
-            </div>
+          <div class = "row navbar-brand font-pupupu bigtext">
+            <%= image_tag "bigoshi.png", size: "100x100", class: "rounded-circle" %>
+            <%= link_to root_path do %>
+              <span class = "pink">推</span><span class = "sky-blue">し</span><span class = "purple">ご</span><span class = "green">と</span>
+            <% end %>
           </div>
           <div class = "row flex-column">
             <ul class = "navbar-nav ml-auto list-unstyled navbar-expand-md ">
               <!--ログインしている時のヘッダー-->
               <% if user_signed_in? %>
                <li class = "nav-item mr-1 font-pupupu">
-                 <i class="fas fa-user"></i><%= link_to "マイページ", user_path(current_user.id), class: "text-secondary" %>
+                 <i class="fas fa-user"></i><%= link_to "マイページ", user_path(current_user.id), class: "pink" %>
                </li>
                <li class = "nav-item mr-1 font-pupupu">
-                 <i class="far fa-calendar"></i><%= link_to "カレンダー",schedules_path, class: "text-secondary" %>
+                 <i class="far fa-calendar"></i><%= link_to "カレンダー",schedules_path, class: "sky-blue" %>
                </li>
                <li class = "nav-item mr-1 font-pupupu">
-                 <i class="far fa-handshake"></i><%= link_to "布教される",articles_path, class: "text-secondary" %>
+                 <i class="far fa-handshake"></i><%= link_to "布教される",articles_path, class: "purple" %>
                </li>
                <li class = "nav-item font-pupupu">
-                 <i class="fas fa-sign-out-alt"></i><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-secondary" %>
+                 <i class="fas fa-sign-out-alt"></i><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "green" %>
                </li>
 
               <!--管理者がログインしている時-->
               <% elsif admin_signed_in? %>
                <li class = "nav-item font-pupupu">
-                 <%= link_to "会員一覧", admin_users_path, class: "text-secondary" %>
+                 <%= link_to "会員一覧", admin_users_path, class: "pink" %>
                </li>
                <li class = "nav-item font-pupupu">
-                 <%= link_to "布教一覧", admin_articles_path, class: "text-secondary" %>
+                 <%= link_to "布教一覧", admin_articles_path, class: "sky-blue" %>
                </li>
                <li class = "nav-item font-pupupu">
-                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-secondary" %>
+                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "purple" %>
                </li>
 
               <!--ログインしていないとき-->
               <% else %>
                <li class = "nav-item font-pupupu">
-                 <%= link_to "新規登録", new_user_registration_path, class: "text-secondary" %>
+                 <%= link_to "新規登録", new_user_registration_path, class: "pink" %>
                </li>
                <li class = "nav-item font-pupupu">
-                 <%= link_to "ログイン", new_user_session_path, class: "text-secondary" %>
+                 <%= link_to "ログイン", new_user_session_path, class: "sky-blue" %>
                </li>
                <li class = "nav-item font-pupupu">
-                 <%= link_to "About", about_path, class: "text-secondary" %>
+                 <%= link_to "About", about_path, class: "purple" %>
                </li>
               <% end %>
             </ul></br>

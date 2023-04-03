@@ -16,6 +16,7 @@ import '@fortawesome/fontawesome-free/js/all'
 
 import '../stylesheets/top.css'
 
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

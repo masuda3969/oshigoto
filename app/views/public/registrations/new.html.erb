@@ -1,37 +1,37 @@
 <div class = "container">
-  
-  <div class = "row justify-content-center">
-    <h6>新規登録画面</h6>
+
+  <div class = "row justify-content-center font-pupupu">
+    <h2><span class = "pink">新</span><span class = "sky-blue">規</span><span class = "purple">登</span><span class = "green">録</span></h2>
   </div>
-  
-  <div class = "row justify-content-center mb-5">
-    <div class = "card bg-light">
+
+  <div class = "row justify-content-center mb-5 font-pupupu">
+    <div class = "card bg-yellow">
       <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user' do |f| %>
       <%= render "public/users/shared/error_messages", resource: resource %>
-      
+
       <div class = "card-body">
         <div class = "form-group">
           <%= f.label :名前 %></br>
-          <%= f.text_field :last_name, :placeholder => "姓" %>
+          <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", :placeholder => "姓" %>
           <%= f.text_field :first_name, :placeholder => "名" %>
         </div>
-        
+
         <div class = "form-group">
           <%= f.label :フリガナ %></br>
           <%= f.text_field :last_name_kana, :placeholder => "セイ" %>
           <%= f.text_field :first_name_kana, :placeholder => "メイ" %>
         </div>
-        
+
         <div class "form-group" >
           <%= f.label :アカウント %></br>
           <%= f.text_field :account, :placeholder => "アカウント名" %>
         </div>
-        
+
         <div class "form-group">
           <%= f.label :メールアドレス %></br>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "メールアドレス" %>
+          <%= f.email_field :email, :placeholder => "メールアドレス" %>
         </div>
-        
+
         <div class "form-group row mb-3">
           <%= f.label :パスワード %>
           <% if @minimum_password_length %>
@@ -39,27 +39,25 @@
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password", :placeholder => "パスワード" %>
         </div>
-        
+
         <div class "form-group row">
           <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => "パスワード確認" %>
         </div>
-        
+
         <div class "form-group">
           <%= f.label :プロフィール写真 %></br>
-          <%= f.file_field :image %>
+          <%= f.file_field :image, :placeholder => "ファイルを選ぶ" %>
         </div>
-        
+
         <div class="actions offset-3">
-          <%= f.submit "新規登録", class: "btn btn-primary mt-3" %>
+          <%= f.submit "新規登録", class: "btn btn-green mt-3" %>
         </div>
       <% end %>
-      </div>  
+      </div>
     </div>
     
+
   </div>
 </div>
 
-  
 
-
-<%= render "public/users/shared/links" %>

@@ -1,14 +1,14 @@
 <div class = "container">
-  <div class = "row mb-3">
+  <div class = "row mb-3 font-pupupu">
     <h5><%= current_user.account%>さんの会員情報編集</h5>
   </div>
-  <div class = "row justify-content-center mb-3">
+  <div class = "row justify-content-center mb-3 font-pupupu">
     <%= link_to "退会する",unsubscribe_path, class: "btn btn-danger btn-sm" %>
   </div>
 
     <%= form_with model: @user, url: user_registration_path do |f| %>
 
-    <div class = "form-group row">
+    <div class = "form-group row font-pupupu">
       <div class = "col-2">
         <%= f.label :名前 %>
       </div>
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class = "form-group row">
+    <div class = "form-group row font-pupupu">
       <div class = "col-2">
         <%= f.label :フリガナ %>
       </div>
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class = "form-group row">
+    <div class = "form-group row font-pupupu">
       <div class = "col-2">
         <%= f.label :メールアドレス %>
       </div>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class = "form-group row">
+    <div class = "form-group row font-pupupu">
       <div class = "col-2">
         <%= f.label :アカウント名 %>
       </div>
@@ -45,14 +45,23 @@
         <%= f.text_field :account, :placeholder => "アカウント名" %>
       </div>
     </div>
+    
+    <div class = "form-group row font-pupupu">
+      <div class = "col-2">
+        <%= f.label :フリー %>
+      </div>
+      <div class = "col-10">
+        <%= f.text_area :introducyion, rows:"10", cols:"40" %>
+      </div>
+    </div>
 
-    <div class = "row justufy-content-center offset-3 mb-3">
+    <div class = "row justufy-content-center offset-3 mb-3 font-pupupu">
       <%= f.submit'更新する', class: "btn btn-success" %>
     </div>
 
     <% end %>
 
-  <div class = "row justify-content-start mb-5">
+  <div class = "row justify-content-start mb-5 font-pupupu">
     <%= link_to "Back", :back,class: "btn btn-primary btn-sm" %>
 
 

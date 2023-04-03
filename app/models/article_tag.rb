@@ -1,2 +1,3 @@
 class ArticleTag < ApplicationRecord
+
 end
