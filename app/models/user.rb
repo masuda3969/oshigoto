@@ -45,6 +45,19 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (is_deleted == false)
   end
+  
+  # ゲストログイン機能
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.last_name = "山田"
+      user.first_name = "太郎"
+      user.last_name_kana = "ヤマダ"
+      user.first_name_kana = "タロウ"
+      user.account = "ゲスト"
+      user.image.attach(io: File.open(Rails.root.join("app/assets/images/no_image.jpg")), filename: "no_image.jpg")
+    end
+  end
 
 
 end

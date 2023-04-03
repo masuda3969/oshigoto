@@ -40,10 +40,15 @@ Rails.application.routes.draw do
     #スケジュール機能
     resources :schedules, only: [:edit, :index, :show, :create,]
     #deviseを用いたユーザーのログイン／ログアウト
-    devise_for :users,skip: [:passwords], controllers: {
+    devise_for :users,skip: [:passwords], controllers: { 
       sessions: 'public/sessions',
       registrations: 'public/registrations',
     }
+    
+    devise_scope :user do
+     post 'users/guest_sign_in', to: 'sessions#guest_sign_in'
+    end
+    
     # 退会確認画面
       get '/users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
       # 論理削除用のルーティング
@@ -56,6 +61,8 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
+    
+    
 
 
   end

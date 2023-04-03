@@ -60,6 +60,9 @@
                <li class = "nav-item font-pupupu">
                  <%= link_to "About", about_path, class: "purple" %>
                </li>
+               <li class = "nav-item font-pupupu">
+                 <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "green" %>
+               </li>
               <% end %>
             </ul></br>
             <ul class = ""> <!--検索機能-->
